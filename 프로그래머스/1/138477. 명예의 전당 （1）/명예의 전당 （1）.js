@@ -1,11 +1,15 @@
 function solution(k, score) {
     let answer = [];
-    let newScore =[]
+    let TOP_K =[]
     
-    for(let i=0; i<score.length; i++){
-        newScore.push(score[i])
-        newScore.sort((a,b)=>b-a)
-        newScore.length <= k ? answer.push(Math.min(...newScore)) : answer.push(newScore[k-1])
+    for(let i of score){
+        TOP_K.push(i)
+        TOP_K.sort((a,b)=>b-a)
+        
+        if(TOP_K.length > k){
+            TOP_K.pop()
+        }
+        answer.push(TOP_K[TOP_K.length-1])
     }
     
     return answer;
