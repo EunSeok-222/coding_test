@@ -1,5 +1,4 @@
 function solution(keymap, targets) {
-    let answer = []
     const minKeys = {}
     
     keymap.forEach(keys => {
@@ -12,21 +11,13 @@ function solution(keymap, targets) {
             }
         }
     })
-    for(let i of targets){
-        let count = 0 
-        
-        for(let j = 0; j < i.length; j++){
-            const char = i[j]
-            
-            if(!minKeys[char]){
-                count = -1 
-                break
-            }else{
-                count += minKeys[char]
-            } 
-        }
-        
-        answer.push(count)
+    
+   return targets.map(word => {
+    let total = 0
+    for (const char of word) {
+        if (!minKeys[char]) return -1 
+        total += minKeys[char]
     }
-    return answer
+    return total
+})
 }
